@@ -1,14 +1,119 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html>
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/styles.css" />
     </head>
     <body>
-        <div>TODO write content</div>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <script src="scripts/utils.js"></script>
+        <script src="scripts/ball.js"></script>
+        <script>
+            window.onload = function() {
+			
+			
+			
+			
+
+				var canvas = document.getElementById('canvas'),
+					context = canvas.getContext('2d'),
+					mouse = utils.captureMouse(canvas);
+					
+					canvas.addEventListener('mousemove', function() {
+						var mx = mouse.x;
+						var my = mouse.y
+						
+						context.clearRect(0,0,canvas.width, canvas.height);
+						
+						context.lineWidth = 4;
+						
+						context.fillStyle = 'rgba(190,190,240, 0.2)';
+						context.fill();
+						context.beginPath();
+						context.arc(mx, my, 50, 0, (Math.PI * 2), true);
+						context.closePath();
+						context.stroke();										
+					
+					}, false);
+
+					
+					
+					
+					/*
+					mouse = utils.captureMouse(canvas),
+					x0 = 350,
+					y0 = 350,
+					x2 = 390,
+					y2 = 390;
+
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					context.strokeStyle = '#FF0000';
+					context.lineWidth = 5
+					context.lineCap = 'round';
+					
+					canvas.addEventListener('mousemove', function () {
+					//	context.clearRect(0, 0, canvas.width, canvas.height);
+						var x1 = mouse.x,
+						y1 = mouse.y;
+						//curve toward mouse
+						context.beginPath();
+						context.moveTo(x0, y0);
+						context.quadraticCurveTo(x1, y1, x2, y2);
+						context.stroke();
+					}, false);					
+					
+					*/
+					canvas.addEventListener('mousedown',function() {
+						//context.clearRect(0, 0, canvas.width, canvas.height);
+
+						context.beginPath();
+						context.moveTo(10,10);
+						context.lineTo(canvas.width-10,canvas.height-10);
+						context.stroke();
+
+						context.moveTo(canvas.width-10,10);
+						context.lineTo(10,canvas.height-10);
+						context.stroke();					
+						
+					}, false);
+					
+/*
+canvas.addEventListener('mousemove', function () {
+context.clearRect(0, 0, canvas.width, canvas.height);
+var x1 = mouse.x,
+y1 = mouse.y;
+//curve toward mouse
+context.beginPath();
+context.moveTo(x0, y0);
+context.quadraticCurveTo(x1, y1, x2, y2);
+context.stroke();
+}, false);
+				
+*/    /*
+				var canvas = document.getElementById('canvas'),
+				context = canvas.getContext('2d'),
+				points = [],
+				numPoints = 9999;
+				//array of random point objects
+				for (var i = 0; i < numPoints; i++) {
+				points.push({
+				x: Math.random() * canvas.width,
+				y: Math.random() * canvas.height
+				});
+				}
+				//move to the first point
+				context.beginPath();
+				context.moveTo(points[0].x, points[1].y);
+				//and loop through each successive pair
+				for (i = 1; i < numPoints; i += 2) {
+					context.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
+				}
+				context.stroke();
+*/
+				
+            };
+			
+        </script>
     </body>
 </html>
