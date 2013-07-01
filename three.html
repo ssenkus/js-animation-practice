@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/styles.css" />
+    </head>
+    <body>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <script src="scripts/utils.js"></script>
+        <script src="scripts/ball.js"></script>
+        <script>
+            window.onload = function() {
+				var canvas = document.getElementById('canvas'),
+					context = canvas.getContext('2d'),
+					mouse = utils.captureMouse(canvas);
+
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          ball = new Ball(10,'#88d'),
+          vx = 1;
+
+      ball.x = 100;
+      ball.y = 200;
+
+      (function drawFrame () {
+        window.requestAnimationFrame(drawFrame, canvas);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+		if (ball.x === 300 && ball.y !== 300) {  
+			ball.x = 300
+			ball.y += 1;
+		} else {
+			ball.x += vx;
+		}
+		
+        ball.draw(context);
+      }());
+					
+					
+					
+            };
+			
+        </script>
+    </body>
+</html>
