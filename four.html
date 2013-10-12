@@ -51,8 +51,8 @@
                         context = canvas.getContext('2d'),
                         mouse = utils.captureMouse(canvas);
                 
-                var counter = 0;
-                (function drawFrame() {
+                
+                (function drawFrame() {  
                     var arrow = arrowNew;
                     window.requestAnimationFrame(drawFrame, canvas);
                     context.clearRect(0, 0, canvas.width, canvas.height);
