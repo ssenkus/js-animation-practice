@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/styles.css" />
+    </head>
+    <body>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <script src="scripts/utils.js"></script>
+        <script>
+            function Arrow() {
+                this.x = canvas.width / 2;
+                this.y = canvas.height / 2;
+                this.color = '#ff0';
+                this.rotation = 0;
+                this.scale = [1, 1];
+
+            }
+            Arrow.prototype.draw = function(context) {
+                context.save();
+                context.translate(this.x, this.y);
+                context.rotate(this.rotation);
+                context.scale(this.scale[0], this.scale[1]);
+                context.lineWidth = 2;
+                context.fillStyle = this.color;
+                context.beginPath();
+                var lBnd = -50;
+                var uBnd = -50;
+                var rBnd = 50;
+                var dBnd = 50;
+
+                context.moveTo(lBnd, uBnd / 2);
+                context.lineTo(0, uBnd / 2);
+                context.lineTo(0, uBnd);
+                context.lineTo(rBnd, 0);
+                context.lineTo(0, dBnd);
+                context.lineTo(0, dBnd / 2);
+                context.lineTo(lBnd, dBnd / 2);
+                context.lineTo(lBnd, -uBnd / 2);
+                context.closePath();
+                context.fill();
+                context.stroke();
+                context.restore();
+            };
+            var arrowNew = new Arrow();
+
+
+            window.onload = function(arrow) {
+                var canvas = document.getElementById('canvas'),
+                        context = canvas.getContext('2d'),
+                        mouse = utils.captureMouse(canvas);
+                
+                var counter = 0;
+                (function drawFrame() {
+                    var arrow = arrowNew;
+                    window.requestAnimationFrame(drawFrame, canvas);
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    var dx = mouse.x - arrow.x,
+                            dy = mouse.y - arrow.y;
+
+                    arrow.rotation = Math.atan2(dy,Math.random() *  dx); //in radians
+                    arrow.scale = [1, 1];
+                    arrow.draw(context);
+                }(arrowNew));
+
+            };
+
+        </script>
+    </body>
+</html>
