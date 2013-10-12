@@ -43,26 +43,24 @@
                 context.stroke();
                 context.restore();
             };
-            var arrowNew = new Arrow();
+            var arrow = new Arrow();
 
 
-            window.onload = function(arrow) {
+            window.onload = function() {
                 var canvas = document.getElementById('canvas'),
-                        context = canvas.getContext('2d'),
-                        mouse = utils.captureMouse(canvas);
-                
-                
+                    context = canvas.getContext('2d'),
+                    mouse = utils.captureMouse(canvas);
+
                 (function drawFrame() {  
-                    var arrow = arrowNew;
                     window.requestAnimationFrame(drawFrame, canvas);
                     context.clearRect(0, 0, canvas.width, canvas.height);
                     var dx = mouse.x - arrow.x,
                             dy = mouse.y - arrow.y;
 
-                    arrow.rotation = Math.atan2(dy,Math.random() *  dx); //in radians
+                    arrow.rotation = Math.atan2(dy,dx); //in radians
                     arrow.scale = [1, 1];
                     arrow.draw(context);
-                }(arrowNew));
+                }());
 
             };
 
