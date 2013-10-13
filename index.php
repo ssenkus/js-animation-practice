@@ -7,16 +7,21 @@ function writeOutFiles() {
             '..',
             '.git',
             '.gitattributes',
-            '.gitignore'
+            '.gitignore',
+            'images',
+            'styles',
+            'nbproject',
+            'index.php',
+            'scripts'
         );
         if (in_array($file, $no_include)) {
             continue;
         } else {
             /* HTML OUTPUT */
-            echo $outString = <<<EOD
+            echo $outString = <<<HEREDOC
         
                                     <li><a href=$file>$file</a></li>
-EOD;
+HEREDOC;
         }
     endforeach;
 }
@@ -100,6 +105,7 @@ EOD;
 
 
             <div class="jumbotron">
+                
                 <iframe id="example" src="bouncy-ball.html"></iframe>
             </div>
             <div class="row marketing">
@@ -126,6 +132,8 @@ EOD;
                 </div>
             </div>
 
+            
+            
             <div class="footer">
                 <p>&copy; Company 2013</p>
             </div>
@@ -142,6 +150,7 @@ EOD;
                     $src = $(this).attr('href');
                     $('#example').attr('src', $src);
                 });
+
 
 
             });
