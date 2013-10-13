@@ -18,9 +18,12 @@ function writeOutFiles() {
             continue;
         } else {
             /* HTML OUTPUT */
+            $string_extension = basename($file, '.html');
+            $menu_text = str_replace('-', ' ', $string_extension);
+            $menu_text = ucwords($menu_text);
             echo $outString = <<<HEREDOC
         
-                                    <li><a href=$file>$file</a></li>
+                                    <li><a href=$file>$menu_text</a></li>
 HEREDOC;
         }
     endforeach;
@@ -36,17 +39,20 @@ HEREDOC;
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
         <link href="styles/jumbotron-narrow.css" rel="stylesheet">        
         <style>
-
+            body {
+                background-color: #333;
+                
+            }
             #canvas {
                 background-image: none;
                 background-color: #bdf!important;
-
             }
             #example {
                 margin: 0px auto;
-                width: 75%;
+                width: 400px;
                 height: 400px;
                 overflow: hidden;
+                border: 0px;
             }
             .navbar-nav > li > a {
                 padding: 5px 10px;
@@ -91,8 +97,8 @@ HEREDOC;
                                     <?php writeOutFiles(); ?>
                                 </ul>
                             </li>                            
-                            <li class=""><a href="../navbar/">Github</a></li>
-                            <li class="active"><a href="./">JSFiddle</a></li>
+                            <li class=""><a href="//www.github.com/ssenkus">Github</a></li>
+                            <li class="active"><a href="//www.jsfiddle.net/user/ssenkus">JSFiddle</a></li>
                             <li><a href="../navbar-fixed-top/">LinkedIn</a></li>
                             <li><a href="../navbar-fixed-top/">Blog</a></li>
                             <li><a href="../navbar-fixed-top/">Portfolio</a></li>
@@ -105,35 +111,11 @@ HEREDOC;
 
 
             <div class="jumbotron">
-                
+
                 <iframe id="example" src="bouncy-ball.html"></iframe>
             </div>
-            <div class="row marketing">
-                <div class="col-lg-6">
-                    <h4>Subheading</h4>
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-                    <h4>Subheading</h4>
-                    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
 
-                    <h4>Subheading</h4>
-                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                </div>
-
-                <div class="col-lg-6">
-                    <h4>Subheading</h4>
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                    <h4>Subheading</h4>
-                    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                    <h4>Subheading</h4>
-                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                </div>
-            </div>
-
-            
-            
             <div class="footer">
                 <p>&copy; Company 2013</p>
             </div>
@@ -150,9 +132,6 @@ HEREDOC;
                     $src = $(this).attr('href');
                     $('#example').attr('src', $src);
                 });
-
-
-
             });
 
         </script>
