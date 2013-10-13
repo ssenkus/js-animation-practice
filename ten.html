@@ -22,10 +22,11 @@
                 var image = new Image();
                 image.src = 'images/gc.jpeg';
                 image.onload = function() {
-                    //drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh):
-                    //Clips an image to the rectangle (sx, sy, sw, sh), scales it to (dh, dw), and draws it at position (dx, dy).
-                    context.drawImage(image, 100, 30,  200, 200, 20, 20, 200, 200);
+                    //                drawImage(image, sx, sy, sw, sh,                        dx, dy,                 dw, dh):
+                    //Clips an image to the rectangle (sx, sy, sw, sh), draws it at position (dx, dy),  scales it to (dh, dw).
+                    context.drawImage(image, 100, 30,  200, 200, (canvas.width/ 2) - 37.5, (canvas.height/ 2) - 37.5, 75, 75);
                     //gradient from white to red
+                    
                     gradient.addColorStop(0, "#ffffff");
                     gradient.addColorStop(1, "#ff0000");
                     context.fillStyle = gradient;
