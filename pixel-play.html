@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Image Manipulation</title>
+        <link rel="stylesheet" href="styles/styles.css">
+    </head>
+    <body>
+        <canvas id="canvas" width="200" height="200"></canvas>
+        <script src="scripts/utils.js"></script>
+        <script>
+
+            window.onload = function() {
+                var canvas = document.getElementById('canvas'),
+                        context = canvas.getContext('2d'),
+                        mouse = utils.captureMouse(canvas);
+                var incrementY = 1.5, incrementX = 1.5;
+
+                window.addEventListener('keydown', function(event) {
+                    switch (event.keyCode) {
+                        case 37:      //left                  
+                            console.log('x--');
+                            if (incrementX <= 1) {
+                                incrementX = 1;
+                            } else {
+                                incrementX--;
+                            }
+
+                            break;
+                        case 39:      //right
+                            if (incrementX => 20) {
+                                incrementX = 20;
+                            } else {
+                                incrementX+=1;
+                            }
+                            console.log('x++');
+
+                            break;
+                        case 38:      //up
+                            if (incrementY == 20) {
+                                incrementY = 20;
+                            } else {
+                                incrementY++;
+                            }
+                            console.log('g');
+
+                            break;
+                        case 40:	//down
+                            if (incrementY <= 1) {
+                                incrementY = 1;
+                            } else {
+                                incrementY--;
+                            }
+                            break;
+                        case 32: // spacebar
+
+
+                            break;
+                    }
+                }, false);
+
+
+                (function drawFrame() {
+                    window.requestAnimationFrame(drawFrame, canvas);
+
+
+                    // load Grumpy Cat image
+                    var image = new Image();
+                    image.src = 'images/gc.jpeg';
+                    image.onload = function() {
+                        context.drawImage(image, 100, 30, 200, 200, 0, 0, 200, 200);
+                        // draw Grumpy Cat 
+
+                        //Clips an image to the rectangle (sx, sy, sw, sh), draws it at position (dx, dy),  scales it to (dh, dw).
+
+
+                    };
+
+                    var imagedata = context.getImageData(0, 0, canvas.width, canvas.height),
+                            pixels = imagedata.data;
+
+                    //pixel iteration
+                    for (var y = 0; y < imagedata.height; y += incrementY) {
+                        for (var x = 0; x < imagedata.width; x += incrementX) {
+
+                            var dx = x - mouse.x,
+                                    dy = y - mouse.y,
+                                    dist = Math.sqrt((dx * dx) + (dy * dy)),
+                                    offset = (x + y * imagedata.width) * 4,
+                                    r = pixels[offset],
+                                    g = pixels[offset + 1],
+                                    b = pixels[offset + 2],
+                                    a = pixels[offset + 4];
+
+                            pixels[offset] = Math.cos(r * dist * 0.05) * 256;
+                            pixels[offset + 1] = Math.sin(g * dist * 0.05) * 256;
+                            pixels[offset + 2] = Math.cos(b * dist * 0.0005) * 256;
+                            pixels[offset + 3] = a * 0.4;
+                        }
+                    }
+
+                    context.putImageData(imagedata, 0, 0);
+                }());
+            };
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
