@@ -14,7 +14,7 @@
                 var canvas = document.getElementById('canvas'),
                         context = canvas.getContext('2d'),
                         mouse = utils.captureMouse(canvas);
-                var incrementY = 1.5, incrementX = 1.5;
+                var incrementY = 1, incrementX = 1;
 
                 window.addEventListener('keydown', function(event) {
                     switch (event.keyCode) {
@@ -28,21 +28,21 @@
 
                             break;
                         case 39:      //right
-                            if (incrementX => 20) {
+                            if (incrementX == 20) {
                                 incrementX = 20;
                             } else {
-                                incrementX+=1;
+                                incrementX++;
                             }
                             console.log('x++');
 
                             break;
                         case 38:      //up
-                            if (incrementY == 20) {
+                            if (incrementY >= 20) {
                                 incrementY = 20;
                             } else {
                                 incrementY++;
                             }
-                            console.log('g');
+                            console.log('y++');
 
                             break;
                         case 40:	//down
@@ -50,6 +50,7 @@
                                 incrementY = 1;
                             } else {
                                 incrementY--;
+                                console.log('y--');
                             }
                             break;
                         case 32: // spacebar
@@ -90,12 +91,12 @@
                                     r = pixels[offset],
                                     g = pixels[offset + 1],
                                     b = pixels[offset + 2],
-                                    a = pixels[offset + 4];
+                                    a = pixels[offset + 3];
 
                             pixels[offset] = Math.cos(r * dist * 0.05) * 256;
                             pixels[offset + 1] = Math.sin(g * dist * 0.05) * 256;
                             pixels[offset + 2] = Math.cos(b * dist * 0.0005) * 256;
-                            pixels[offset + 3] = a * 0.4;
+                            pixels[offset + 3] = a * 0.9;
                         }
                     }
 

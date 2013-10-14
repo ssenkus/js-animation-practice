@@ -41,7 +41,7 @@ HEREDOC;
         <style>
             body {
                 background-color: #333;
-                
+
             }
             #canvas {
                 background-image: none;
@@ -50,8 +50,9 @@ HEREDOC;
             #example {
                 margin: 0px auto;
                 width: 400px;
+                padding: 0;
                 height: 400px;
-                overflow: hidden;
+                overflow: hidden!important;
                 border: 0px;
             }
             .navbar-nav > li > a {
@@ -107,12 +108,9 @@ HEREDOC;
                     </div><!-- /.nav-collapse -->
                 </div><!-- /.container -->
             </div><!-- /.navbar -->            
-
-
-
             <div class="jumbotron">
 
-                <iframe id="example" src="bouncy-ball.html"></iframe>
+                <iframe id="example" src="pixel-play.html"></iframe>
             </div>
 
 
